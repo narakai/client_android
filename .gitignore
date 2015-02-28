@@ -1,5 +1,6 @@
-.classpath
-.project
-bin
-gen
-project.properties
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
