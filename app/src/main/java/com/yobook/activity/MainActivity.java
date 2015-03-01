@@ -7,6 +7,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,10 +17,15 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
 import com.yobook.R;
+import com.yobook.eventbus.event.ISBNCodeEvent;
+
+import de.greenrobot.event.EventBus;
 
 
 public class MainActivity extends BaseActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    public static final String TAG = "MainActivity";
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -43,6 +50,10 @@ public class MainActivity extends BaseActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        //michael add on 2015-03-01 for eventbus test
+        EventBus.getDefault().register(this);
+        //michael add end
     }
 
     @Override
@@ -146,4 +157,17 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    //michael add on 2015-03-01 for eventbus test
+    @Override
+    public void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+
+    public void onEvent(ISBNCodeEvent event) {
+        Log.i(TAG, "ISBNCode:" + event.getISBNCode() + "\tMainThread:" +
+                (Looper.myLooper() == Looper.getMainLooper()));
+    }
+    //michael add end
 }
