@@ -1,4 +1,4 @@
-package de.greenrobot.event.util;
+package com.yobook.eventbus.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -10,7 +10,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import de.greenrobot.event.EventBus;
+import com.yobook.eventbus.EventBus;
 
 public class ErrorDialogFragments {
     /** TODO Use config:  Icon res ID to use for all error dialogs. May be configured by each app (optional). */

@@ -1,4 +1,4 @@
-package de.greenrobot.event.util;
+package com.yobook.eventbus.util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import android.util.Log;
-import de.greenrobot.event.EventBus;
+import com.yobook.eventbus.EventBus;
 
 
 /**

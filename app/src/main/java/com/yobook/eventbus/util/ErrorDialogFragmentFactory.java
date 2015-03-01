@@ -1,4 +1,4 @@
-package de.greenrobot.event.util;
+package com.yobook.eventbus.util;
 
 import android.annotation.TargetApi;
 import android.os.Build;

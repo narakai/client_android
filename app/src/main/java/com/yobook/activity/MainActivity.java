@@ -17,9 +17,9 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
 import com.yobook.R;
-import com.yobook.eventbus.event.ISBNCodeEvent;
+import com.yobook.eventbus.entry.ISBNCodeEvent;
 
-import de.greenrobot.event.EventBus;
+import com.yobook.eventbus.EventBus;
 
 
 public class MainActivity extends BaseActivity

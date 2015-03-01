@@ -1,8 +1,8 @@
-package de.greenrobot.event.util;
+package com.yobook.eventbus.util;
 
 import android.content.res.Resources;
 import android.util.Log;
-import de.greenrobot.event.EventBus;
+import com.yobook.eventbus.EventBus;
 
 public class ErrorDialogConfig {
     final Resources resources;

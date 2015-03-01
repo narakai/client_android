@@ -1,4 +1,4 @@
-package de.greenrobot.event.util;
+package com.yobook.eventbus.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -10,7 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
-import de.greenrobot.event.EventBus;
+import com.yobook.eventbus.EventBus;
 
 /**
  * Central class for app that want to use event based error dialogs.<br/>
@@ -160,14 +160,14 @@ public class ErrorDialogManager {
     /** Must be set by the application. */
     public static ErrorDialogFragmentFactory<?> factory;
 
-    protected static final String TAG_ERROR_DIALOG = "de.greenrobot.eventbus.error_dialog";
-    protected static final String TAG_ERROR_DIALOG_MANAGER = "de.greenrobot.eventbus.error_dialog_manager";
+    protected static final String TAG_ERROR_DIALOG = "com.yobook.eventbus.error_dialog";
+    protected static final String TAG_ERROR_DIALOG_MANAGER = "com.yobook.eventbus.error_dialog_manager";
 
-    public static final String KEY_TITLE = "de.greenrobot.eventbus.errordialog.title";
-    public static final String KEY_MESSAGE = "de.greenrobot.eventbus.errordialog.message";
-    public static final String KEY_FINISH_AFTER_DIALOG = "de.greenrobot.eventbus.errordialog.finish_after_dialog";
-    public static final String KEY_ICON_ID = "de.greenrobot.eventbus.errordialog.icon_id";
-    public static final String KEY_EVENT_TYPE_ON_CLOSE = "de.greenrobot.eventbus.errordialog.event_type_on_close";
+    public static final String KEY_TITLE = "com.yobook.eventbus.errordialog.title";
+    public static final String KEY_MESSAGE = "com.yobook.eventbus.errordialog.message";
+    public static final String KEY_FINISH_AFTER_DIALOG = "com.yobook.eventbus.errordialog.finish_after_dialog";
+    public static final String KEY_ICON_ID = "com.yobook.eventbus.errordialog.icon_id";
+    public static final String KEY_EVENT_TYPE_ON_CLOSE = "com.yobook.eventbus.errordialog.event_type_on_close";
 
     /** Scope is limited to the activity's class. */
     public static void attachTo(Activity activity) {

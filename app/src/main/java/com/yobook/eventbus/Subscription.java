@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.greenrobot.event;
+package com.yobook.eventbus;
 
 final class Subscription {
     final Object subscriber;

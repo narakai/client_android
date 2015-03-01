@@ -1,4 +1,4 @@
-package com.yobook.eventbus.event;
+package com.yobook.eventbus.entry;
 
 /**
  * Created by michael on 3/1/15.

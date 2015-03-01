@@ -1,4 +1,4 @@
-package de.greenrobot.event.util;
+package com.yobook.eventbus.util;
 
 public interface HasExecutionScope {
     Object getExecutionScope();

@@ -1,4 +1,4 @@
-package de.greenrobot.event;
+package com.yobook.eventbus;
 
 final class PendingPostQueue {
     private PendingPost head;

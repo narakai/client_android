@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.greenrobot.event.util;
+package com.yobook.eventbus.util;
 
 /**
  * A generic failure event, which can be used by apps to propagate thrown exceptions. Also used in conjunction with
