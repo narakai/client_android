@@ -9,3 +9,4 @@ android:
     - build-tools-19.0.0
 
 
+gradle build connectedCheck
