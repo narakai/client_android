@@ -8,3 +8,4 @@ android:
   components:
     - build-tools-19.0.0
 
+./gradlew testDevelopmentDebug
