@@ -9,6 +9,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.text.TextUtils;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.yobook.R;
+import com.yobook.eventbus.event.ISBNCodeEvent;
 import com.yobook.zxing.camera.CameraManager;
 import com.yobook.zxing.decoding.CaptureActivityHandler;
 import com.yobook.zxing.decoding.InactivityTimer;
@@ -24,6 +26,8 @@ import com.yobook.zxing.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.Vector;
+
+import de.greenrobot.event.EventBus;
 
 public class ScanISBNCodeActivity extends BaseScanActivity implements Callback {
     private static final float BEEP_VOLUME = 0.10f;
@@ -94,12 +98,17 @@ public class ScanISBNCodeActivity extends BaseScanActivity implements Callback {
         final String resultString = result.getText();
         if (resultString.equals("")) {
             Toast.makeText(ScanISBNCodeActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
-            ScanISBNCodeActivity.this.finish();
+
+            //ScanISBNCodeActivity.this.finish();
         } else {
             Toast.makeText(ScanISBNCodeActivity.this, "Scan successful! Code is :" + resultString, Toast.LENGTH_LONG).show();
-            ScanISBNCodeActivity.this.finish();
+            //ScanISBNCodeActivity.this.finish();
         }
+        //michael add on 2015-03-01 for transfer ISBNCode to MainActivity.
+        EventBus.getDefault().post(new ISBNCodeEvent(resultString));
 
+        ScanISBNCodeActivity.this.finish();
+        //michael add end
     }
 
     private void initCamera(SurfaceHolder surfaceHolder) {
