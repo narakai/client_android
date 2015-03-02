@@ -9,6 +9,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.text.TextUtils;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -95,7 +96,7 @@ public class ScanISBNCodeActivity extends BaseScanActivity implements Callback {
         mInactivityTimer.onActivity();
         playBeepSoundAndVibrate();
         final String resultString = result.getText();
-        if (resultString.equals("")) {
+        if (TextUtils.isEmpty(resultString)) {
             Toast.makeText(ScanISBNCodeActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
 
             //ScanISBNCodeActivity.this.finish();
