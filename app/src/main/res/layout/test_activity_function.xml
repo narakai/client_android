@@ -18,32 +18,44 @@
             android:layout_height="wrap_content"
             android:id="@+id/testLogin"
             android:text="@string/test_login"
+            android:enabled="false"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/testLogout"
             android:text="@string/test_logout"
+            android:enabled="false"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test_register"
+            android:enabled="false"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test_readISBN"
+            android:enabled="false"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test_readUserInfo"
+            android:enabled="false"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test_readBookInfo"
+            android:enabled="false"
+            />
+        <Button
+            android:id="@+id/testHealthCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/test_healthCheck"
             />
 
     </LinearLayout>

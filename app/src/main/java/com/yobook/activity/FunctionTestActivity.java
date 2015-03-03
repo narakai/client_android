@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yobook.R;
+import com.yobook.asynchttp.AsyncHttpResponseHandler;
+import com.yobook.asynchttp.NetManager;
 
 public class FunctionTestActivity extends BaseActivity {
     //用于显示当前的输出结果。
@@ -24,9 +26,11 @@ public class FunctionTestActivity extends BaseActivity {
     private void initViews() {
         View testLoginView = findViewById(R.id.testLogin);
         View testLogoutView = findViewById(R.id.testLogout);
+        View testHealthCheck = findViewById(R.id.testHealthCheck);
 
         testLoginView.setOnClickListener(mClickListener);
         testLogoutView.setOnClickListener(mClickListener);
+        testHealthCheck.setOnClickListener(mClickListener);
 
 
         mOutput = (TextView)findViewById(R.id.output);
@@ -40,6 +44,21 @@ public class FunctionTestActivity extends BaseActivity {
             switch(v.getId()) {
                 case R.id.testLogin:
                     updateCurrentOutput("TestLogin", true);
+                    break;
+                case R.id.testHealthCheck:
+                    updateCurrentOutput("start to fetch data", false);
+                    NetManager.getHealthCHeck(new AsyncHttpResponseHandler() {
+
+                        public void onSuccess(String response) {
+                            // Successfully got a response
+                            updateCurrentOutput(response, true);
+                        }
+
+                        public void onFail(String response) {
+                            // Successfully got a response
+                            updateCurrentOutput(response, true);
+                        }
+                    });
                     break;
                 case R.id.testLogout:
                     break;

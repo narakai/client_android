@@ -11,7 +11,12 @@ public class NetManager {
 
         mClient.get(URLBuilder.getUrl(URL.XXXXXXX), params, responseHandler);
     }
-    
+
+
+    public static void getHealthCHeck(AsyncHttpResponseHandler responseHandler) {
+        //RequestParams params = new RequestParams();
+        mClient.get(URLBuilder.getUrl(URL.HEALTHCHECK), null, responseHandler);
+    }
 
 
 }
