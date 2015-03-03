@@ -19,13 +19,20 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
 
+        </activity>
         <activity
             android:name=".activity.ScanISBNCodeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity
+            android:name=".activity.FunctionTestActivity"
+            android:label="@string/title_activity_function_test"
+            >
+
+
         </activity>
     </application>
 
