@@ -19,7 +19,7 @@ public class NetManager {
 
     public static void getHealthCHeck(AsyncHttpResponseHandler responseHandler) {
         //RequestParams params = new RequestParams();
-        mClient.get(URLBuilder.getUrl(URL.HEALTHCHECK), null, responseHandler);
+        mClient.get(URLBuilder.getUrl(URL.HEALTH_CHECK), null, responseHandler);
     }
 
 
