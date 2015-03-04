@@ -12,9 +12,13 @@ import com.yobook.R;
 import com.yobook.asynchttp.AsyncHttpResponseHandler;
 import com.yobook.asynchttp.NetManager;
 
+
+
 public class FunctionTestActivity extends BaseActivity {
     //用于显示当前的输出结果。
     TextView mOutput = null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +58,10 @@ public class FunctionTestActivity extends BaseActivity {
                             updateCurrentOutput(response, true);
                         }
 
-                        public void onFail(String response) {
-                            // Successfully got a response
+
+                        @Override
+                        public void onFailure(Throwable e, String response) {
+                            // Response failed :(
                             updateCurrentOutput(response, true);
                         }
                     });
@@ -73,7 +79,7 @@ public class FunctionTestActivity extends BaseActivity {
     * */
     private void updateCurrentOutput(String message, boolean append) {
         if(null != mOutput) {
-            StringBuilder sb = new StringBuilder(100);
+            StringBuilder sb = new StringBuilder(60);
             if(append) {
                 sb.append(mOutput.getText());
             }

@@ -17,3 +17,6 @@ before_script:
   - adb shell input keyevent 82 &
 
 #script: ./gradlew aR
+#
+notifications:
+  slack: ngacn:a6lX7HFhlVAmqAh9wLCYWId2

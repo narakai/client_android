@@ -2,6 +2,10 @@ package com.yobook.asynchttp;
 
 import com.yobook.asynchttp.URLBuilder.URL;
 
+/**
+ *  网络协议这块，请参考
+ *  https://github.com/yobook/api
+ */
 public class NetManager {
 
     private static AsyncHttpClient mClient = new AsyncHttpClient();
