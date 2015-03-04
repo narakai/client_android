@@ -112,6 +112,8 @@ public class MainActivity extends BaseActivity
             return true;
         } else if (id == R.id.action_scan) {
             startActivity(new Intent(this, ScanISBNCodeActivity.class));
+        } else if (id == R.id.action_test) {
+            startActivity(new Intent(this, FunctionTestActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
