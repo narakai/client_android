@@ -73,21 +73,24 @@ public class FunctionTestActivity extends BaseActivity {
                     });
                     break;
                 case R.id.testReadBookInfo:
+
                     updateCurrentOutput("start to fetch book info", false);
-                    NetManager.getBookInfoByName("bookName",new AsyncHttpResponseHandler(){
+                    NetManager.getBookInfoByNameOrISBN(null, "034930490",new AsyncHttpResponseHandler(){
 
                         @Override
                         public void onSuccess(String response) {
                             // Successfully got a response
-                            updateCurrentOutput("Success:" + response, true);
+                            updateCurrentOutput("Success in query BookName:" + response, true);
                         }
 
                         @Override
                         public void onFailure(Throwable e, String response) {
                             // Response failed :(
-                            updateCurrentOutput("Failure:" + response, true);
+                            updateCurrentOutput("Failure in query BookName:" + response, true);
                         }
                     });
+
+
 
                     updateCurrentOutput("start to fetch book info", true);
                     NetManager.getBookInfoById("00313",new AsyncHttpResponseHandler(){
@@ -95,15 +98,16 @@ public class FunctionTestActivity extends BaseActivity {
                         @Override
                         public void onSuccess(String response) {
                             // Successfully got a response
-                            updateCurrentOutput("Success:" + response, true);
+                            updateCurrentOutput("Success in query BookId:" + response, true);
                         }
 
                         @Override
                         public void onFailure(Throwable e, String response) {
                             // Response failed :(
-                            updateCurrentOutput("Failure:" + response, true);
+                            updateCurrentOutput("Failure in query BookId:" + response, true);
                         }
                     });
+
                     break;
             }
         }

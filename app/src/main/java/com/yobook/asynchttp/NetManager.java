@@ -22,11 +22,19 @@ public class NetManager {
         mClient.get(URLBuilder.getUrl(URL.FETCH_SERVER_TIME), null, responseHandler);
     }
 
-    public static void getBookInfoByName(String bookName, AsyncHttpResponseHandler responseHandler) {
+    public static void getBookInfoByNameOrISBN(String bookName, String sn, AsyncHttpResponseHandler responseHandler) {
+        if( null == bookName && null == sn) {
+            throw new IllegalArgumentException("BookName and ISBN could not be both null.");
+        }
         RequestParams params = new RequestParams();
-        params.put("name", bookName);
-
-        mClient.get(URLBuilder.getUrl(URL.QUERY_BOOK_BY_NAME), params, responseHandler);
+        if(null != bookName) {
+            params.put("name", bookName);
+        }
+        if(null != sn) {
+            params.put("sn", sn);
+        }
+        mClient.get(URLBuilder.getUrl(URL.QUERY_BOOK_BY_NAME),
+                params, responseHandler);
     }
 
     public static void getBookInfoById(String id, AsyncHttpResponseHandler responseHandler) {
