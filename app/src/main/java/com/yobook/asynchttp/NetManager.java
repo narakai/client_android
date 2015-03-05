@@ -17,9 +17,20 @@ public class NetManager {
     }
 
 
-    public static void getHealthCHeck(AsyncHttpResponseHandler responseHandler) {
+    public static void getServerTime(AsyncHttpResponseHandler responseHandler) {
         //RequestParams params = new RequestParams();
-        mClient.get(URLBuilder.getUrl(URL.HEALTH_CHECK), null, responseHandler);
+        mClient.get(URLBuilder.getUrl(URL.FETCH_SERVER_TIME), null, responseHandler);
+    }
+
+    public static void getBookInfoByName(String bookName, AsyncHttpResponseHandler responseHandler) {
+        RequestParams params = new RequestParams();
+        params.put("name", bookName);
+
+        mClient.get(URLBuilder.getUrl(URL.QUERY_BOOK_BY_NAME), params, responseHandler);
+    }
+
+    public static void getBookInfoById(String id, AsyncHttpResponseHandler responseHandler) {
+        mClient.get(URLBuilder.getUrl(URL.QUERY_BOOKS_BY_ID) + "/" + id, null, responseHandler);
     }
 
 

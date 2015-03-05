@@ -30,11 +30,13 @@ public class FunctionTestActivity extends BaseActivity {
     private void initViews() {
         View testLoginView = findViewById(R.id.testLogin);
         View testLogoutView = findViewById(R.id.testLogout);
-        View testHealthCheck = findViewById(R.id.testHealthCheck);
+        View testServerTime = findViewById(R.id.testServerTime);
+        View testReadBookInfo = findViewById(R.id.testReadBookInfo);
 
         testLoginView.setOnClickListener(mClickListener);
         testLogoutView.setOnClickListener(mClickListener);
-        testHealthCheck.setOnClickListener(mClickListener);
+        testServerTime.setOnClickListener(mClickListener);
+        testReadBookInfo.setOnClickListener(mClickListener);
 
 
         mOutput = (TextView)findViewById(R.id.output);
@@ -49,15 +51,19 @@ public class FunctionTestActivity extends BaseActivity {
                 case R.id.testLogin:
                     updateCurrentOutput("TestLogin", true);
                     break;
-                case R.id.testHealthCheck:
-                    updateCurrentOutput("start to fetch data", false);
-                    NetManager.getHealthCHeck(new AsyncHttpResponseHandler() {
 
+                case R.id.testLogout:
+                    break;
+
+                case R.id.testServerTime:
+                    updateCurrentOutput("start to fetch data", false);
+                    NetManager.getServerTime(new AsyncHttpResponseHandler() {
+
+                        @Override
                         public void onSuccess(String response) {
                             // Successfully got a response
                             updateCurrentOutput(response, true);
                         }
-
 
                         @Override
                         public void onFailure(Throwable e, String response) {
@@ -66,7 +72,38 @@ public class FunctionTestActivity extends BaseActivity {
                         }
                     });
                     break;
-                case R.id.testLogout:
+                case R.id.testReadBookInfo:
+                    updateCurrentOutput("start to fetch book info", false);
+                    NetManager.getBookInfoByName("bookName",new AsyncHttpResponseHandler(){
+
+                        @Override
+                        public void onSuccess(String response) {
+                            // Successfully got a response
+                            updateCurrentOutput("Success:" + response, true);
+                        }
+
+                        @Override
+                        public void onFailure(Throwable e, String response) {
+                            // Response failed :(
+                            updateCurrentOutput("Failure:" + response, true);
+                        }
+                    });
+
+                    updateCurrentOutput("start to fetch book info", true);
+                    NetManager.getBookInfoById("00313",new AsyncHttpResponseHandler(){
+
+                        @Override
+                        public void onSuccess(String response) {
+                            // Successfully got a response
+                            updateCurrentOutput("Success:" + response, true);
+                        }
+
+                        @Override
+                        public void onFailure(Throwable e, String response) {
+                            // Response failed :(
+                            updateCurrentOutput("Failure:" + response, true);
+                        }
+                    });
                     break;
             }
         }

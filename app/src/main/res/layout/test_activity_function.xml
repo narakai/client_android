@@ -46,16 +46,16 @@
             android:enabled="false"
             />
         <Button
+            android:id="@+id/testReadBookInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test_readBookInfo"
-            android:enabled="false"
             />
         <Button
-            android:id="@+id/testHealthCheck"
+            android:id="@+id/testServerTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/test_healthCheck"
+            android:text="@string/test_serverTime"
             />
 
     </LinearLayout>

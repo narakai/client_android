@@ -16,8 +16,14 @@ public class URLBuilder {
             case URL.XXXXXXX:
                 url += "XXXX";
                 break;
-            case URL.HEALTH_CHECK:
+            case URL.FETCH_SERVER_TIME:
                 url += "/healthcheck";
+                break;
+            case URL.QUERY_BOOKS_BY_ID:
+            case URL.QUERY_BOOK_BY_NAME:
+                url += "/books";
+                break;
+            case URL.CREATE_BOOK_INFO:
                 break;
             default:
                 // do nothing...
@@ -30,8 +36,11 @@ public class URLBuilder {
     
     public static class URL {
         public static final int XXXXXXX      = 0; // 例子
-        public static final int HEALTH_CHECK = 1; // XXXX我也不知道这个接口是啥
+        public static final int FETCH_SERVER_TIME = 1; // 获取服务器时间。
+        public static final int QUERY_BOOKS_BY_ID = 2; // 根据ID获取书籍信息
+        public static final int QUERY_BOOK_BY_NAME = 3;// 根据名字获取书籍信息
 
+        public static final int CREATE_BOOK_INFO  = 9;//创建图书信息
 
     }
 }
