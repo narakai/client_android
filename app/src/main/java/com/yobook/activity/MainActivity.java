@@ -52,16 +52,25 @@ public class MainActivity extends BaseActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
         //michael add on 2015-03-01 for eventbus test
-        EventBus.getDefault().register(this);
+        //EventBus.getDefault().register(this);
         //michael add end
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
+        Fragment nextPage = null;
+        switch(position) {
+            case 2:
+                nextPage = new AddBookFragment();
+                break;
+            default:
+                nextPage = PlaceholderFragment.newInstance(position + 1);
+                break;
+        }
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, nextPage)
                 .commit();
     }
 
@@ -74,7 +83,7 @@ public class MainActivity extends BaseActivity
                 mTitle = getString(R.string.title_section2);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.fragment_title_addBook);
                 break;
         }
     }
@@ -110,7 +119,8 @@ public class MainActivity extends BaseActivity
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_scan) {
-            startActivity(new Intent(this, ScanISBNCodeActivity.class));
+            //启动扫码已转移到addBookFragment里面。
+            //startActivity(new Intent(this, ScanISBNCodeActivity.class));
         } else if (id == R.id.action_test) {
             startActivity(new Intent(this, FunctionTestActivity.class));
         }
@@ -159,6 +169,7 @@ public class MainActivity extends BaseActivity
     }
 
     //michael add on 2015-03-01 for eventbus test
+    /*
     @Override
     public void onDestroy() {
         EventBus.getDefault().unregister(this);
@@ -170,5 +181,6 @@ public class MainActivity extends BaseActivity
         Log.i(TAG, "ISBNCode:" + event.getISBNCode() + "\tMainThread:" +
                 (Looper.myLooper() == Looper.getMainLooper()));
     }
+    */
     //michael add end
 }

@@ -4,7 +4,6 @@
     <string name="app_name">YoBook</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
@@ -18,12 +17,26 @@
 
     <string name="hello_world">Hello world!</string>
 
+    <string name="fragment_title_addBook">添加书籍</string>
+
+    <!-- AddBook Fragment start -->
+    <string name="bookname">书籍名称</string>
+    <string name="bookname_hint">书籍名称</string>
+    <string name="bookISBN">书籍ISBN</string>
+    <string name="bookISBN_hint">书籍ISBN,点我点我</string>
+    <string name="description">描述</string>
+    <string name="description_hint">描述</string>
+    <string name="submit">提交</string>
+    <string name="toast_name_sn_both_null">书籍名称与ISBN不能同时为空！</string>
+    <!-- AddBook Fragment end -->
+
     <!-- the value below used in test function -->
     <string name="test_login">TestLogin</string>
     <string name="test_logout">TestLogout</string>
     <string name="test_register">TestRegister</string>
     <string name="test_readISBN">TestReadISBN</string>
     <string name="test_readBookInfo">TestReadBookInfo</string>
+    <string name="test_uploadBookInfo">TestUploadBookInfo</string>
     <string name="test_readUserInfo">TestReadUserInfo</string>
     <string name="test_serverTime">TestServerTime</string>
 
