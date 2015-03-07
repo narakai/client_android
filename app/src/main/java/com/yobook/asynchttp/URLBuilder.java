@@ -24,6 +24,7 @@ public class URLBuilder {
                 url += "/books";
                 break;
             case URL.CREATE_BOOK_INFO:
+                url += "/books";
                 break;
             default:
                 // do nothing...

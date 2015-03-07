@@ -11,10 +11,14 @@ import android.widget.TextView;
 import com.yobook.R;
 import com.yobook.asynchttp.AsyncHttpResponseHandler;
 import com.yobook.asynchttp.NetManager;
+import com.yobook.model.BookInfo;
+import com.yobook.util.YLog;
 
+import java.io.IOException;
 
 
 public class FunctionTestActivity extends BaseActivity {
+    private static final String TAG = FunctionTestActivity.class.getName();
     //用于显示当前的输出结果。
     TextView mOutput = null;
 
@@ -32,11 +36,14 @@ public class FunctionTestActivity extends BaseActivity {
         View testLogoutView = findViewById(R.id.testLogout);
         View testServerTime = findViewById(R.id.testServerTime);
         View testReadBookInfo = findViewById(R.id.testReadBookInfo);
+        View testUploadBookInfo = findViewById(R.id.testUploadBookInfo);
+
 
         testLoginView.setOnClickListener(mClickListener);
         testLogoutView.setOnClickListener(mClickListener);
         testServerTime.setOnClickListener(mClickListener);
         testReadBookInfo.setOnClickListener(mClickListener);
+        testUploadBookInfo.setOnClickListener(mClickListener);
 
 
         mOutput = (TextView)findViewById(R.id.output);
@@ -75,7 +82,7 @@ public class FunctionTestActivity extends BaseActivity {
                 case R.id.testReadBookInfo:
 
                     updateCurrentOutput("start to fetch book info", false);
-                    NetManager.getBookInfoByNameOrISBN(null, "034930490",new AsyncHttpResponseHandler(){
+                    NetManager.getBookInfoByNameOrISBN(null, "034930490", new AsyncHttpResponseHandler() {
 
                         @Override
                         public void onSuccess(String response) {
@@ -108,6 +115,29 @@ public class FunctionTestActivity extends BaseActivity {
                         }
                     });
 
+                    break;
+                case R.id.testUploadBookInfo:
+                    updateCurrentOutput("start to upload book info", false);
+                    BookInfo b = new BookInfo("000000000", "test_book", "summery");
+                    try {
+                        NetManager.postBookInfo(b, new AsyncHttpResponseHandler() {
+                            @Override
+                            public void onSuccess(String content) {
+                                updateCurrentOutput("Success in upload BookInfo:" + content, true);
+                            }
+
+                            @Override
+                            public void onFailure(Throwable error, String content) {
+
+
+                                updateCurrentOutput("failed in upload BookInfo:" + content, true);
+                                updateCurrentOutput(YLog.getStackTrace(null, error),true);
+                                YLog.e(TAG, YLog.getStackTrace(null, error));
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
             }
         }

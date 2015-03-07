@@ -178,7 +178,7 @@ public class MainActivity extends BaseActivity
 
 
     public void onEvent(ISBNCodeEvent event) {
-        Log.i(TAG, "ISBNCode:" + event.getISBNCode() + "\tMainThread:" +
+        YLog.i(TAG, "ISBNCode:" + event.getISBNCode() + "\tMainThread:" +
                 (Looper.myLooper() == Looper.getMainLooper()));
     }
     */

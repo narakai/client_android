@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.yobook.R;
 import com.yobook.eventbus.EventBus;
 import com.yobook.eventbus.entry.ISBNCodeEvent;
+import com.yobook.util.YLog;
 
 /**
  *
@@ -88,7 +89,7 @@ public class AddBookFragment  extends BaseFragment {
     }
 
     public void onEventMainThread(ISBNCodeEvent event) {
-        Log.i(TAG, "ISBNCode:" + event.getISBNCode() + "\tMainThread:" +
+        YLog.i(TAG, "ISBNCode:" + event.getISBNCode() + "\tMainThread:" +
                 (Looper.myLooper() == Looper.getMainLooper()));
         mBookISBNView.setText(event.getISBNCode());
     }

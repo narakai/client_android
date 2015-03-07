@@ -19,6 +19,7 @@
             android:id="@+id/testLogin"
             android:text="@string/test_login"
             android:enabled="false"
+            android:visibility="gone"
             />
         <Button
             android:layout_width="match_parent"
@@ -26,24 +27,28 @@
             android:id="@+id/testLogout"
             android:text="@string/test_logout"
             android:enabled="false"
+            android:visibility="gone"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test_register"
             android:enabled="false"
+            android:visibility="gone"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test_readISBN"
             android:enabled="false"
+            android:visibility="gone"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test_readUserInfo"
             android:enabled="false"
+            android:visibility="gone"
             />
         <Button
             android:id="@+id/testReadBookInfo"
@@ -51,6 +56,11 @@
             android:layout_height="wrap_content"
             android:text="@string/test_readBookInfo"
             />
+        <Button
+            android:id="@+id/testUploadBookInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/test_uploadBookInfo"/>
         <Button
             android:id="@+id/testServerTime"
             android:layout_width="match_parent"

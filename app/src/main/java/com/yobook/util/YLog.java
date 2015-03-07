@@ -44,4 +44,37 @@ public class YLog {
     }
 
 
+
+    /*
+     * Getting it from 4.4 android source code.
+     * luni/src/main/java/java/lang/Throwable.java
+     */
+    public static String getStackTrace(String indent, Throwable ex) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ex.toString());
+        sb.append("\n");
+
+        StackTraceElement[] stack = ex.getStackTrace();
+        for(int i = 0 ; i < stack.length; i++) {
+            sb.append(indent);
+            sb.append("\tat ");
+            sb.append(stack[i].toString());
+            sb.append("\n");
+        }
+        Throwable cause = ex.getCause();
+        if (cause != null) {
+            sb.append(indent);
+            sb.append("Cause by: " + cause.toString() + "\n");
+            StackTraceElement[] stacks = cause.getStackTrace();
+            for(int i = 0 ; i < stacks.length; i++) {
+                sb.append(indent);
+                sb.append("\tat ");
+                sb.append(stacks[i].toString());
+                sb.append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
+
 }

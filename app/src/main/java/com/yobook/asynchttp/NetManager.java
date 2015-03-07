@@ -1,6 +1,13 @@
 package com.yobook.asynchttp;
 
+import android.text.TextUtils;
+
 import com.yobook.asynchttp.URLBuilder.URL;
+import com.yobook.model.BookInfo;
+
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 /**
  *  网络协议这块，请参考
@@ -52,6 +59,17 @@ public class NetManager {
 
     public static void getBookInfoById(String id, AsyncHttpResponseHandler responseHandler) {
         mClient.get(URLBuilder.getUrl(URL.QUERY_BOOKS_BY_ID) + "/" + id, null, responseHandler);
+    }
+
+    public static void postBookInfo(BookInfo book, AsyncHttpResponseHandler responseHandler)
+            throws IOException {
+        String content = book.toJSONString();
+        if (null == content) {
+            throw new NullPointerException("can't create "
+                    + BookInfo.class.getSimpleName() + " json value");
+        }
+        SimpleEntity entity = new SimpleEntity(content);
+        mClient.post(null,URLBuilder.getUrl(URL.CREATE_BOOK_INFO), entity, null, responseHandler);
     }
 
 
