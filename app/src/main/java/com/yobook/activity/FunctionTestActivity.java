@@ -2,17 +2,23 @@ package com.yobook.activity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 import com.yobook.R;
 import com.yobook.asynchttp.AsyncHttpResponseHandler;
 import com.yobook.asynchttp.NetManager;
 import com.yobook.model.BookInfo;
 import com.yobook.util.YLog;
+import android.os.Handler;
+import android.os.Message;
 
 import java.io.IOException;
 
@@ -22,6 +28,7 @@ public class FunctionTestActivity extends BaseActivity {
     //用于显示当前的输出结果。
     TextView mOutput = null;
 
+    private Tencent mTencent;
 
 
     @Override
@@ -29,6 +36,7 @@ public class FunctionTestActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_activity_function);
         initViews();
+        mTencent = Tencent.createInstance("1104321992", FunctionTestActivity.this);
     }
 
     private void initViews() {
@@ -56,10 +64,32 @@ public class FunctionTestActivity extends BaseActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.testLogin:
-                    updateCurrentOutput("TestLogin", true);
+                    if(null != mTencent && !mTencent.isSessionValid()) {
+                        updateCurrentOutput("TestLogin", false);
+                        mTencent.login(FunctionTestActivity.this, "all", new IUiListener() {
+                            @Override
+                            public void onComplete(Object o) {
+                                updateCurrentOutput("login success:" + o.toString(), true);
+                            }
+
+                            @Override
+                            public void onError(UiError uiError) {
+                                updateCurrentOutput("login failed", true);
+                            }
+
+                            @Override
+                            public void onCancel() {
+                                updateCurrentOutput("login cancel", true);
+                            }
+                        });
+                    }
                     break;
 
                 case R.id.testLogout:
+
+                    if(null != mTencent && mTencent.isSessionValid()) {
+                        mTencent.logout(FunctionTestActivity.this);
+                    }
                     break;
 
                 case R.id.testServerTime:
@@ -183,5 +213,11 @@ public class FunctionTestActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mTencent.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
