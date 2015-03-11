@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.tencent.connect.share.QQShare;
+import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -21,6 +23,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class FunctionTestActivity extends BaseActivity {
@@ -45,6 +48,7 @@ public class FunctionTestActivity extends BaseActivity {
         View testServerTime = findViewById(R.id.testServerTime);
         View testReadBookInfo = findViewById(R.id.testReadBookInfo);
         View testUploadBookInfo = findViewById(R.id.testUploadBookInfo);
+        View testShareInfo = findViewById(R.id.testShareInfo);
 
 
         testLoginView.setOnClickListener(mClickListener);
@@ -52,6 +56,7 @@ public class FunctionTestActivity extends BaseActivity {
         testServerTime.setOnClickListener(mClickListener);
         testReadBookInfo.setOnClickListener(mClickListener);
         testUploadBookInfo.setOnClickListener(mClickListener);
+        testShareInfo.setOnClickListener(mClickListener);
 
 
         mOutput = (TextView)findViewById(R.id.output);
@@ -84,6 +89,45 @@ public class FunctionTestActivity extends BaseActivity {
                         });
                     }
                     break;
+
+                case R.id.testShareInfo:
+                    if(null != mTencent && mTencent.isSessionValid()) {
+                        updateCurrentOutput("share start", false);
+                        Bundle bundle = new Bundle();
+                        bundle.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE,
+                                QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
+                        bundle.putString(QzoneShare.SHARE_TO_QQ_TITLE, "Test title");
+                        bundle.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, "Test Summary");
+                        bundle.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL,"http://www.baidu.com");
+                        ArrayList<String> imgList = new ArrayList<String>();
+                        imgList.add("http://img3.douban.com/lpic/s3635685.jpg");
+                        bundle.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL,
+                                imgList);
+
+                        //这里出现几个问题，随后继续研究。
+                        //1.可能出现分享的LISTENER提前返回。
+                        //2.可以正常分享，但离开QQ界面以后跳出选择器，选择可分享的界面，离开以后，无LISTENER返回。
+                        mTencent.shareToQzone(FunctionTestActivity.this, bundle, new IUiListener() {
+                            @Override
+                            public void onComplete(Object o) {
+                                updateCurrentOutput("share complete" + o.toString(), true);
+                            }
+
+                            @Override
+                            public void onError(UiError uiError) {
+                                updateCurrentOutput("share error:" + uiError.errorDetail +
+                                        "\t\nmsg:" + uiError.errorMessage
+                                        +"\t\ncode:" + uiError.errorCode, true);
+                            }
+
+                            @Override
+                            public void onCancel() {
+                                updateCurrentOutput("share cancel111", true);
+                            }
+                        });
+                    }
+                    break;
+
 
                 case R.id.testLogout:
 

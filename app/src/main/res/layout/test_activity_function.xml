@@ -57,6 +57,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/test_uploadBookInfo"/>
+
+        <Button
+            android:id="@+id/testShareInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/test_shareInfo"
+            />
         <Button
             android:id="@+id/testServerTime"
             android:layout_width="match_parent"
