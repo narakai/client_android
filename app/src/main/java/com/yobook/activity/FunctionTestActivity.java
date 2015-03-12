@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,13 +23,16 @@ import com.yobook.model.BookInfo;
 import com.yobook.util.YLog;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class FunctionTestActivity extends BaseActivity {
+public class FunctionTestActivity extends ActionBarActivity {
     private static final String TAG = FunctionTestActivity.class.getName();
+
+    private static final String QQ_APP_KEY = "1104321992";
     //用于显示当前的输出结果。
     TextView mOutput = null;
 
@@ -38,11 +43,22 @@ public class FunctionTestActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_activity_function);
+
         initViews();
-        mTencent = Tencent.createInstance("1104321992", FunctionTestActivity.this);
+        mTencent = Tencent.createInstance(QQ_APP_KEY, FunctionTestActivity.this);
     }
 
     private void initViews() {
+        //如果要使用toolBar,必须继承ActionBarActivity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // App Logo
+        toolbar.setLogo(R.drawable.ic_launcher);
+        // Title
+        toolbar.setTitle("My Title");
+        // Sub Title
+        toolbar.setSubtitle("Sub title");
+        FunctionTestActivity.this.setSupportActionBar(toolbar);
+
         View testLoginView = findViewById(R.id.testLogin);
         View testLogoutView = findViewById(R.id.testLogout);
         View testServerTime = findViewById(R.id.testServerTime);
@@ -237,6 +253,7 @@ public class FunctionTestActivity extends BaseActivity {
     }
 
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -252,9 +269,29 @@ public class FunctionTestActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        /*
         if (id == R.id.action_settings) {
             return true;
         }
+        */
+
+        String result = null;
+        switch(id) {
+            case R.id.action_edit:
+                result = "Click edit";
+                break;
+            case R.id.action_share:
+                result = "Click share";
+                break;
+            case R.id.action_settings:
+                result = "Click settings";
+                break;
+        }
+        if( null != result) {
+            Toast.makeText(FunctionTestActivity.this, result, Toast.LENGTH_LONG).show();
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -264,4 +301,5 @@ public class FunctionTestActivity extends BaseActivity {
         mTencent.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 }

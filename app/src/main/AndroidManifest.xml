@@ -28,7 +28,11 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden"></activity>
-        <activity android:name=".activity.FunctionTestActivity"></activity>
+        <activity
+            android:name=".activity.FunctionTestActivity"
+            android:theme="@style/AppTheme.Test"
+            >
+        </activity>
 
 
         <!-- QQ start -->

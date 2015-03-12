@@ -5,4 +5,22 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppTheme.Base" parent="Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- Actionbar color -->
+        <item name="colorPrimary">@color/material_deep_teal_500</item>
+        <!--Status bar color-->
+        <item name="colorPrimaryDark">@color/material_deep_teal_200</item>
+        <!--Window color-->
+        <item name="android:windowBackground">@color/test_foreground</item>
+    </style>
+
+    <style name="AppTheme.Test" parent="AppTheme.Base">
+    </style>
+
+    <style name="BtnTheme" >
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

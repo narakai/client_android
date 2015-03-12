@@ -8,4 +8,9 @@
     <color name="result_view">#b0000000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="possible_result_points">#C0FFFF00</color>
+
+
+    <!-- test start -->
+    <color name="test_foreground">#FFE0F2F1</color>
+    <!-- test end -->
 </resources>
