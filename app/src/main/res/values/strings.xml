@@ -40,6 +40,8 @@
     <string name="test_readUserInfo">TestReadUserInfo</string>
     <string name="test_serverTime">TestServerTime</string>
     <string name="test_shareInfo">TestShare???</string>
+    <string name="test_action_edit">TestEdit</string>
+    <string name="test_action_share">TestShare</string>
 
 
 </resources>
