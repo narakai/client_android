@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.tencent.connect.UserInfo;
+import com.tencent.connect.common.Constants;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.tauth.IUiListener;
@@ -25,6 +27,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -37,6 +41,7 @@ public class FunctionTestActivity extends ActionBarActivity {
     TextView mOutput = null;
 
     private Tencent mTencent;
+    private UserInfo mUserInfo;
 
 
     @Override
@@ -91,6 +96,27 @@ public class FunctionTestActivity extends ActionBarActivity {
                             @Override
                             public void onComplete(Object o) {
                                 updateCurrentOutput("login success:" + o.toString(), true);
+                                //当我们登录成功后，立马去请求当前用户信息。
+                                mUserInfo = new UserInfo(
+                                        FunctionTestActivity.this, mTencent.getQQToken());
+                                mUserInfo.getUserInfo(new IUiListener() {
+                                    @Override
+                                    public void onComplete(Object o) {
+                                        updateCurrentOutput("getUserInfo" + o.toString(), false);
+                                        YLog.i(TAG,"getUserInfo:" + o.toString());
+                                    }
+
+                                    @Override
+                                    public void onError(UiError uiError) {
+                                        updateCurrentOutput("getUserInfo failed", true);
+                                    }
+
+                                    @Override
+                                    public void onCancel() {
+                                        updateCurrentOutput("getUserInfo failed", true);
+                                    }
+                                });
+
                             }
 
                             @Override
