@@ -84,6 +84,13 @@
             android:text="@string/test_serverTime"
             android:textColor="@color/black"
             />
+        <Button
+            android:id="@+id/testAroundUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/test_query_around"
+            android:textColor="@color/black"
+            />
 
     </LinearLayout>
 

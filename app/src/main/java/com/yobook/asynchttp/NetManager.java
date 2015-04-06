@@ -4,6 +4,8 @@ import android.text.TextUtils;
 
 import com.yobook.asynchttp.URLBuilder.URL;
 import com.yobook.model.BookInfo;
+import com.yobook.model.UserInfo;
+import com.yobook.util.YLog;
 
 import org.json.JSONObject;
 
@@ -72,5 +74,24 @@ public class NetManager {
         mClient.post(null,URLBuilder.getUrl(URL.CREATE_BOOK_INFO), entity, null, responseHandler);
     }
 
+    public static void postYoBookLogin(UserInfo u, AsyncHttpResponseHandler responseHandler)
+            throws IOException {
+        String content = u.toJSONString();
+        if (null == content) {
+            throw new NullPointerException("can't create "
+                    + UserInfo.class.getSimpleName() + " json value");
+        }
+        YLog.i("MICHAEL", "postContent:" + content);
+        SimpleEntity entity = new SimpleEntity(content);
+        mClient.post(null, URLBuilder.getUrl(URL.USER_LOGIN), entity, null, responseHandler);
+    }
 
+    public static void queryAroundUser(double longitude, double latitude, int radius
+            , AsyncHttpResponseHandler responseHandler) {
+        RequestParams params = new RequestParams();
+        params.put("longitude", longitude + "");
+        params.put("latitude", latitude + "");
+        params.put("radius", radius + "");
+        mClient.get(URLBuilder.getUrl(URL.USER_AROUND), params,responseHandler);
+    }
 }

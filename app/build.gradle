@@ -3,7 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "com.yobook"
         minSdkVersion 14
@@ -23,7 +22,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:21.0.3'
     compile 'com.android.support:appcompat-v7:21.0.3'
-    compile files('libs/Android_Location_V1.3.1.jar')
     compile files('libs/mta-sdk-1.6.2.jar')
     compile files('libs/open_sdk_r4547.jar')
+    compile files('libs/locSDK_5.02.jar')
 }

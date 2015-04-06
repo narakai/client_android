@@ -11,6 +11,7 @@ public class URLBuilder {
      * @return 根据url类型返回对应的服务器地址
      */
     public static String getUrl(int urlType) {
+        //此处交给编译器自行优化。
         String url = BASE_URL;
         switch (urlType) {
             case URL.XXXXXXX:
@@ -25,6 +26,12 @@ public class URLBuilder {
                 break;
             case URL.CREATE_BOOK_INFO:
                 url += "/books";
+                break;
+            case URL.USER_LOGIN:
+                url += "/users";
+                break;
+            case URL.USER_AROUND:
+                url += "/users/geosearch";
                 break;
             default:
                 // do nothing...
@@ -42,6 +49,10 @@ public class URLBuilder {
         public static final int QUERY_BOOK_BY_NAME = 3;// 根据名字获取书籍信息
 
         public static final int CREATE_BOOK_INFO  = 9;//创建图书信息
+
+        public static final int USER_LOGIN = 20; //用户登录
+
+        public static final int USER_AROUND = 21; //用户周边
 
     }
 }
